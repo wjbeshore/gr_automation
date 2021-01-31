@@ -1,23 +1,23 @@
 
-# Writing to an excel  
-# sheet using Python 
-import xlwt 
-from xlwt import Workbook 
+# Writing to an excel
+# sheet using Python
+import xlwt
+from xlwt import Workbook
 from openpyxl import *
 import csv
-  
-# Workbook is created 
-wb = Workbook() 
+
+# Workbook is created
+wb = Workbook()
 wb=load_workbook("GRimport.xlsx")
 ws=wb["Grocery Rescue"]
 
 
 
 #Get date
-date = input("Enter input date in m/d/yyyy format:") 
+date = input("Enter input date in m/d/yyyy format:")
 donor_inc = 6
 agency_inc = 67
-  
+
 # Writes date to document
 
 
@@ -40,11 +40,11 @@ def get_drop_off_info():
 		mix_tot = 0
 		nonfood_tot = 0
 
-		donor = input("What is the donor ID? If no donors remain type none: ")
+		donor = str(input("What is the donor ID? If no donors remain type none: "))
 		while(donor != "none"):
 			while donor not in donor_num_list:
 				print("That is not an donor number.")
-				donor = input("What is the donor ID?")
+				donor = str(input("What is the donor ID?"))
 			donorcell = ws.cell(donor_inc, 1)
 			donorcell.value = donor
 			pickupcell = ws.cell(donor_inc, 4)
@@ -77,7 +77,7 @@ def get_drop_off_info():
 			dairycell.value = dairy
 			mixcell.value = mix
 			nonfoodcell.value = nonfood
-			donor = input("What is the donor ID? If no donors remain type none: ")
+			donor = str(input("What is the donor ID? If no donors remain type none: "))
 			donor_inc += 1
 
 		agency = input("What is the agency ID?")
@@ -108,5 +108,3 @@ def get_drop_off_info():
 
 get_drop_off_info()
 wb.save("pyexcel.xlsx")
-  
-
